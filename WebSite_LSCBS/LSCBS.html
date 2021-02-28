@@ -1,0 +1,303 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <!--<meta charset="UTF-8" http-equiv="refresh" content="5">-->
+    <title>刑事案件情境相似檢索系統</title>
+    <!-- jQuery js -->
+    <script src="jquery.js"></script>
+    <!--include the highcharts library-->
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <!-- Bootstrap css and js -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <style type="text/css">
+			.fixed {
+		  	/*設定網頁背景圖樣*/
+		  	background-image: url("background.png");
+		  	background-attachment: fixed;
+		  }
+    </style>
+    <script>
+    	function Choose(obj)
+    	{
+    		switch (obj) {
+    			case 1:
+    				window.open("LSCBS_Info.html?LID=" + $("#h_output1").val());
+    				break;
+    			case 2:
+    				window.open("LSCBS_Info.html?LID=" + $("#h_output2").val());
+    				break;
+    			case 3:
+    				window.open("LSCBS_Info.html?LID=" + $("#h_output3").val());
+    				break;
+    			case 4:
+    				window.open("LSCBS_Info.html?LID=" + $("#h_output4").val());
+    				break;
+    			case 5:
+    				window.open("LSCBS_Info.html?LID=" + $("#h_output5").val());
+    				break;
+    		}
+    	}
+    	
+    	function Sample(obj)
+    	{
+    		switch (obj) {
+    			case 0:
+    				$("#tb_input").val('陳二在2月14日中午12點，在台中市區小吃店吃飯喝高粱。2點吃完飯後，開著自己的汽車在台灣大道上與機車擦撞，對方腿部有輕微擦傷。警員到場後，酒測值為0.25毫克。')
+    				break;
+    			case 1:
+    				$("#tb_input").val('張三於1月1日下午在臺中市東區的公共場合，聚集其他人到場下注六合彩簽選號碼，開獎號碼決定輸贏，每次幾百到幾千元不等，以賺取金錢。經由路人舉報，傍晚被警員查獲。')
+    				break;
+    			case 2:
+    				$("#tb_input").val('李四於10月30日晚上8點，在新北市蘆洲區朋友家將安非他命置於玻璃球內，用火燒烤再吸食其煙霧，隔天又將海洛因摻入香菸內點燃吸食。警察當日查獲，並要求他驗尿，安非他命呈陽性反應。')
+    				break;
+    			case 3:
+    				$("#tb_input").val('王五於12月25日在桃園車站前，發現有部機車置物箱未上鎖，即徒手打開機車坐墊，將所有放在置物箱內的財物拿走，之後騎著機車離去。經車主報警處理後，警察調閱監視器在龜山鄉王小明的住處將他逮捕查獲。')
+    				break;
+    			case 4:
+    				$("#tb_input").val('謝泡菜與曹阿章於民國109 年8月27日22時40分許因故發生口角，徒手推倒曹阿章，致曹阿章受有左上背挫傷合併擦傷、右側手肘挫傷合併擦傷及左側手肘挫傷合併擦傷等傷害。嗣經在場民眾報警處理，始悉上情。')
+    				break;
+
+    		}
+    	}        
+    	
+        function LSCBS(){
+            var search = $("#tb_input").val().replace(' ', '').replace(/(?:\\[rn])+/g, "").replace(/\n/g, "");
+            if (search.length < 30)
+            {
+            	alert('案件情境內容請輸入30個字以上。')
+            	return;
+            }
+		    $.ajax({
+		        url: "LSCBS.php",
+		        data: { title: search },
+		        type: "POST",
+		        dataType: "json",   //回傳的型態
+		        //contentType: "application/json", //送出的型態 與 data是一組  data: contentType:
+		        async: false,
+		        error: function () { alert('讀取失敗,請洽管理員'); },
+		        success: function (data) {
+		            console.log(data)
+		            if (data != null) {
+	                	$('#h_output1').val(data[0].id);	                
+	                	$('#tb_output1_1').val(data[0].no);	                
+	                	$('#tb_output1_2').val(data[0].reason);	                
+	                	$('#tb_output1_3').val(data[0].Situation);	                
+
+	                	$('#h_output2').val(data[1].id);	                
+	                	$('#tb_output2_1').val(data[1].no);	                
+	                	$('#tb_output2_2').val(data[1].reason);	                
+	                	$('#tb_output2_3').val(data[1].Situation);	                
+
+	                	$('#h_output3').val(data[2].id);	                
+	                	$('#tb_output3_1').val(data[2].no);	                
+	                	$('#tb_output3_2').val(data[2].reason);	                
+	                	$('#tb_output3_3').val(data[2].Situation);	                
+
+	                	$('#h_output4').val(data[3].id);	                
+	                	$('#tb_output4_1').val(data[3].no);	                
+	                	$('#tb_output4_2').val(data[3].reason);	                
+	                	$('#tb_output4_3').val(data[3].Situation);	                
+
+	                	$('#h_output5').val(data[4].id);	                
+	                	$('#tb_output5_1').val(data[4].no);	                
+	                	$('#tb_output5_2').val(data[4].reason);	                
+	                	$('#tb_output5_3').val(data[4].Situation);	                
+
+		            }
+		        }
+		    });
+		    $("#divOutput").css("display","");
+		}
+    </script>
+</head>
+<body class='fixed'>
+    <div class="container">
+        <div class="form-horizontal formInputList">
+            <div class="row">
+            </div>
+            <div class="form-group col-xs-12 formBtn">
+                <div class="text-center">
+                <h1>刑事案件情境相似檢索系統</h1>
+                </div>
+            </div>
+            <div class="form-group col-md-12 col-lg-12">
+                <div class="text-center">
+					<h3>案件情境請參照下方架構輸入：</h3>
+					<h3>【人名】於【時間】在【地點】發生【事情】造成【結果】而【原因】被抓。</h3>
+	                <a class="btn btn-primary btn-lg" onclick="Sample(0);">酒駕範例</a>
+	                <a class="btn btn-primary btn-lg" onclick="Sample(1);">賭博範例</a>
+	                <a class="btn btn-primary btn-lg" onclick="Sample(2);">毒品範例</a>
+	                <a class="btn btn-primary btn-lg" onclick="Sample(3);">竊盜範例</a>
+	                <a class="btn btn-primary btn-lg" onclick="Sample(4);">傷害範例</a>
+                </div>
+            </div>			
+            <!--<BUTTON class ="btn btn-info"id="trigger">Trigger NB</BUTTON> -->
+            <div class="form-group col-md-12 col-lg-12">
+                <label for="firstName" class="control-label col-sm-3 inputLabelName">輸入內容</label>
+                <div class="col-sm-9">
+					<textarea id="tb_input" name="textarea" rows="10" cols="72" placeholder="請輸入想要檢索的刑事案件情境內容"></textarea>
+                </div>
+            </div>
+			<div class="form-group col-xs-12 formBtn">
+                <div class="text-center">
+                    <button class="btn btn-success btn-lg" onclick="LSCBS()">送出</button>
+                </div>
+            </div>            
+            <div id="divOutput"  class="form-group col-md-12 col-lg-12" style="display:none" >
+            	<div id="divOutput1">
+		            <div class="form-group col-md-12 col-lg-12">
+			            <h3 class="control-label col-sm-3 inputLabelName">相似情境 1</h3>
+			            <input id='h_output1' type='hidden' value="" />
+			        </div>
+		            <div class="form-group col-md-12 col-lg-12">
+		                <label for="firstName" class="control-label col-sm-3 inputLabelName">案號</label>
+		                <div class="col-sm-4">
+		                    <input type="text" id="tb_output1_1" class="form-control" readonly="readonly" />
+		                </div>
+		            </div>
+		            <div class="form-group col-md-12 col-lg-12">
+		                <label for="firstName" class="control-label col-sm-3 inputLabelName">類別</label>
+		                <div class="col-sm-4">
+		                    <input type="text" id="tb_output1_2" class="form-control" readonly="readonly" />
+		                </div>		                
+		            </div>
+		            <div class="form-group col-md-12 col-lg-12">
+		                <label for="firstName" class="control-label col-sm-3 inputLabelName">情境</label>
+		                <div class="col-sm-9">
+							<textarea id="tb_output1_3" name="textarea" rows="10" cols="72" readonly="readonly"  ></textarea>
+		                </div>	                
+		            </div>
+					<div class="form-group col-xs-12 formBtn">
+		                <div class="text-center">
+			                <a class="btn btn-info btn-lg" onclick="Choose(1);">詳細資訊</a>
+		                </div>
+		            </div>   		            
+	            </div>
+            	<div id="divOutput2">
+		            <div class="form-group col-md-12 col-lg-12">
+			            <h3 class="control-label col-sm-3 inputLabelName">相似情境 2</h3>
+			            <input id='h_output2' type='hidden' value="" />
+			        </div>
+		            <div class="form-group col-md-12 col-lg-12">
+		                <label for="firstName" class="control-label col-sm-3 inputLabelName">案號</label>
+		                <div class="col-sm-4">
+		                    <input type="text" id="tb_output2_1" class="form-control" readonly="readonly" />
+		                </div>
+		            </div>
+		            <div class="form-group col-md-12 col-lg-12">
+		                <label for="firstName" class="control-label col-sm-3 inputLabelName">類別</label>
+		                <div class="col-sm-4">
+		                    <input type="text" id="tb_output2_2" class="form-control" readonly="readonly" />
+		                </div>		                
+		            </div>
+		            <div class="form-group col-md-12 col-lg-12">
+		                <label for="firstName" class="control-label col-sm-3 inputLabelName">情境</label>
+		                <div class="col-sm-9">
+							<textarea id="tb_output2_3" name="textarea" rows="10" cols="72" readonly="readonly"  ></textarea>
+		                </div>	                
+		            </div>
+					<div class="form-group col-xs-12 formBtn">
+		                <div class="text-center">
+			                    <a class="btn btn-info btn-lg" onclick="Choose(2);">詳細資訊</a>
+		                </div>
+		            </div>   		            
+	            </div>
+            	<div id="divOutput3">
+		            <div class="form-group col-md-12 col-lg-12">
+			            <h3 class="control-label col-sm-3 inputLabelName">相似情境 3</h3>
+			            <input id='h_output3' type='hidden' value="" />
+			        </div>
+		            <div class="form-group col-md-12 col-lg-12">
+		                <label for="firstName" class="control-label col-sm-3 inputLabelName">案號</label>
+		                <div class="col-sm-4">
+		                    <input type="text" id="tb_output3_1" class="form-control" readonly="readonly" />
+		                </div>
+		            </div>
+		            <div class="form-group col-md-12 col-lg-12">
+		                <label for="firstName" class="control-label col-sm-3 inputLabelName">類別</label>
+		                <div class="col-sm-4">
+		                    <input type="text" id="tb_output3_2" class="form-control" readonly="readonly" />
+		                </div>		                
+		            </div>
+		            <div class="form-group col-md-12 col-lg-12">
+		                <label for="firstName" class="control-label col-sm-3 inputLabelName">情境</label>
+		                <div class="col-sm-9">
+							<textarea id="tb_output3_3" name="textarea" rows="10" cols="72" readonly="readonly"  ></textarea>
+		                </div>	                
+		            </div>
+					<div class="form-group col-xs-12 formBtn">
+		                <div class="text-center">
+			                    <a class="btn btn-info btn-lg" onclick="Choose(3);">詳細資訊</a>
+		                </div>
+		            </div>   		            
+	            </div>
+            	<div id="divOutput4">
+		            <div class="form-group col-md-12 col-lg-12">
+			            <h3 class="control-label col-sm-3 inputLabelName">相似情境 4</h3>
+			            <input id='h_output4' type='hidden' value="" />
+			        </div>
+		            <div class="form-group col-md-12 col-lg-12">
+		                <label for="firstName" class="control-label col-sm-3 inputLabelName">案號</label>
+		                <div class="col-sm-4">
+		                    <input type="text" id="tb_output4_1" class="form-control" readonly="readonly" />
+		                </div>
+		            </div>
+		            <div class="form-group col-md-12 col-lg-12">
+		                <label for="firstName" class="control-label col-sm-3 inputLabelName">類別</label>
+		                <div class="col-sm-4">
+		                    <input type="text" id="tb_output4_2" class="form-control" readonly="readonly" />
+		                </div>		                
+		            </div>
+		            <div class="form-group col-md-12 col-lg-12">
+		                <label for="firstName" class="control-label col-sm-3 inputLabelName">情境</label>
+		                <div class="col-sm-9">
+							<textarea id="tb_output4_3" name="textarea" rows="10" cols="72" readonly="readonly"  ></textarea>
+		                </div>	                
+		            </div>
+					<div class="form-group col-xs-12 formBtn">
+		                <div class="text-center">
+			                    <a class="btn btn-info btn-lg" onclick="Choose(4);">詳細資訊</a>
+		                </div>
+		            </div>   		            
+	            </div>
+            	<div id="divOutput5">
+		            <div class="form-group col-md-12 col-lg-12">
+			            <h3 class="control-label col-sm-3 inputLabelName">相似情境 5</h3>
+			            <input id='h_output5' type='hidden' value="" />
+			        </div>
+		            <div class="form-group col-md-12 col-lg-12">
+		                <label for="firstName" class="control-label col-sm-3 inputLabelName">案號</label>
+		                <div class="col-sm-4">
+		                    <input type="text" id="tb_output5_1" class="form-control" readonly="readonly" />
+		                </div>
+		            </div>
+		            <div class="form-group col-md-12 col-lg-12">
+		                <label for="firstName" class="control-label col-sm-3 inputLabelName">類別</label>
+		                <div class="col-sm-4">
+		                    <input type="text" id="tb_output5_2" class="form-control" readonly="readonly" />
+		                </div>		                
+		            </div>
+		            <div class="form-group col-md-12 col-lg-12">
+		                <label for="firstName" class="control-label col-sm-3 inputLabelName">情境</label>
+		                <div class="col-sm-9">
+							<textarea id="tb_output5_3" name="textarea" rows="10" cols="72" readonly="readonly"  ></textarea>
+		                </div>	                
+		            </div>
+					<div class="form-group col-xs-12 formBtn">
+		                <div class="text-center">
+			                    <a class="btn btn-info btn-lg" onclick="Choose(5);">詳細資訊</a>
+		                </div>
+		            </div>   		            
+	            </div>
+            </div>
+        </div>
+    </div>
+
+        <!--<button class="btn btn-info" onclick="window.location.href='ClearStatus.php'">Clear Status</button>-->
+        <!--<button class="btn btn-success" onclick="window.location.href='GenerateData.php'">Generate New Data</button>-->
+        <!--<button class="btn btn-danger" onclick="window.location.href='ClearData.php'">Delete Data</button>-->
+</body>
+</html>

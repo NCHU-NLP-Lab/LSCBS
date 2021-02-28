@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <!--<meta charset="UTF-8" http-equiv="refresh" content="5">-->
+    <title>刑事案件情境相似檢索系統-詳細資訊</title>
+    <!-- jQuery js -->
+    <script src="jquery.js"></script>
+    <!--include the highcharts library-->
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <!-- Bootstrap css and js -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <style type="text/css">
+			.fixed {
+		  	/*設定網頁背景圖樣*/
+		  	background-image: url("background.png");
+		  	background-attachment: fixed;
+		  }
+    </style>
+    <script>
+		$(document).ready(function () {
+        	const queryString = window.location.search;
+			const urlParams = new URLSearchParams(queryString);
+			const LID = urlParams.get('LID')		
+		    $.ajax({
+		        url: "LSCBS_Info.php",
+		        data: { LID: LID },
+		        type: "POST",
+		        dataType: "json",   //回傳的型態
+		        //contentType: "application/json", //送出的型態 與 data是一組  data: contentType:
+		        async: false,
+		        error: function () { alert('讀取失敗,請洽管理員'); },
+		        success: function (data) {
+		            if (data != null) {
+		            	console.log(data)
+	                	$('#tb_court').val(data.court);	                
+	                	$('#tb_judgement').val(data.judgement);	                
+	                	$('#tb_date').val(data.date);	                
+	                	$('#tb_no').val(data.no);	                
+	                	$('#tb_reason').val(data.reason);	                
+	                	$('#tb_mainText').val(data.mainText);	                
+	                	$('#tb_judgement').val(data.judgement);	                
+		            }
+		        }
+		    });			
+		});
+    </script>
+</head>
+<body class='fixed'>
+    <div class="container">
+        <div class="form-horizontal formInputList">
+            <div class="row">
+            </div>
+            <div class="form-group col-xs-12 formBtn">
+                <div class="text-center">
+                <h1>刑事案件情境相似檢索系統-詳細資訊</h1>
+                </div>
+            </div>
+            <div id="divOutput"  class="form-group col-md-12 col-lg-12"" >
+            	<div id="divOutput1">
+
+		            <div class="form-group col-md-12 col-lg-12">
+		                <label for="firstName" class="control-label col-sm-3 inputLabelName">法院</label>
+		                <div class="col-sm-4">
+		                    <input type="text" id="tb_court" class="form-control" readonly="readonly" />
+		                </div>
+		            </div>
+		            <div class="form-group col-md-12 col-lg-12">
+		                <label for="firstName" class="control-label col-sm-3 inputLabelName">案號</label>
+		                <div class="col-sm-4">
+		                    <input type="text" id="tb_no" class="form-control" readonly="readonly" />
+		                </div>
+		            </div>
+		            <div class="form-group col-md-12 col-lg-12">
+		                <label for="firstName" class="control-label col-sm-3 inputLabelName">裁判案由</label>
+		                <div class="col-sm-4">
+		                    <input type="text" id="tb_reason" class="form-control" readonly="readonly" />
+		                </div>		                
+		            </div>
+		            <div class="form-group col-md-12 col-lg-12">
+		                <label for="firstName" class="control-label col-sm-3 inputLabelName">裁判日期</label>
+		                <div class="col-sm-4">
+		                    <input type="text" id="tb_date" class="form-control" readonly="readonly" />
+		                </div>		                
+		            </div>		            
+		            <div class="form-group col-md-12 col-lg-12">
+		                <label for="firstName" class="control-label col-sm-3 inputLabelName">主文</label>
+	
+		                <div class="col-sm-9">
+							<textarea id="tb_mainText" name="textarea" rows="5" cols="80" readonly="readonly"  ></textarea>
+		                </div>
+		            </div>		           
+		            <div class="form-group col-md-12 col-lg-12">
+		                <label for="firstName" class="control-label col-sm-3 inputLabelName">詳細內文</label>
+		                <div class="col-sm-9">
+							<textarea id="tb_judgement" name="textarea" rows="50" cols="80" readonly="readonly"  ></textarea>
+		                </div>	                
+		            </div>
+					<div class="form-group col-xs-12 formBtn">
+		                <div class="text-center">
+			                <a class="btn btn-info btn-lg" onclick="window.close();">關閉</a>
+		                </div>
+		            </div>   		            
+	            </div>
+		</div>            
+    </div>
+
+        <!--<button class="btn btn-info" onclick="window.location.href='ClearStatus.php'">Clear Status</button>-->
+        <!--<button class="btn btn-success" onclick="window.location.href='GenerateData.php'">Generate New Data</button>-->
+        <!--<button class="btn btn-danger" onclick="window.location.href='ClearData.php'">Delete Data</button>-->
+</body>
+</html>
