@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import jieba.posseg as pseg
 from sentence_transformers import SentenceTransformer
-from program.albert.LSCBS.STBERT.Cover import util
+from sentence_transformers import util
 import time
 import json
 
