@@ -70,7 +70,7 @@ scipy 1.3.1
 2. data_tfidf2是選取十萬筆判決書來做比對。
 > https://drive.google.com/file/d/1N1o-dRrBP58folqqAzX9POe_AWyqDSsJ/view?usp=sharing
 
-![image] (https://raw.githubusercontent.com/NCHU-NLU-Lab/LSCBS/main/ReadMe2.jpg)
+![image](https://raw.githubusercontent.com/NCHU-NLU-Lab/LSCBS/main/ReadMe2.jpg)
 
 -   執行 STBERT_Srv.py
 #### 2. 架網站
