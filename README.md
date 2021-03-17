@@ -72,6 +72,8 @@ scipy 1.3.1
 
 ![image](https://raw.githubusercontent.com/NCHU-NLU-Lab/LSCBS/main/ReadMe2.jpg)
 
+-   在STBERT_Srv.py 行49~61 可以自行調整參數，以及相對應的資料夾。如下圖，我是選擇data_tfidf2
+![image](https://raw.githubusercontent.com/NCHU-NLU-Lab/LSCBS/main/ReadMe3.jpg)
 -   執行 STBERT_Srv.py
 #### 2. 架網站
 -   將 ~/WebSite_LSCBS 所有檔案丟進你的網站即可。內容均為 LSCBS 實驗的程式調整。
