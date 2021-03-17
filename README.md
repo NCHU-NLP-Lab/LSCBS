@@ -69,7 +69,9 @@ scipy 1.3.1
 
 2. data_tfidf2是選取十萬筆判決書來做比對。
 > https://drive.google.com/file/d/1N1o-dRrBP58folqqAzX9POe_AWyqDSsJ/view?usp=sharing
-> 
+
+![image] https://github.com/NCHU-NLU-Lab/LSCBS/blob/main/ReadMe2.jpg
+
 -   執行 STBERT_Srv.py
 #### 2. 架網站
 -   將 ~/WebSite_LSCBS 所有檔案丟進你的網站即可。內容均為 LSCBS 實驗的程式調整。
