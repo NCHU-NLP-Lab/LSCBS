@@ -62,7 +62,15 @@ scipy 1.3.1
 
 ### 刑事案件情境相似檢索系統
 #### 1. 架LSCBS Srv
--   將 LSCBERT 實驗 Step5. 留下的模型中所有檔案放入 [~/STBERT/LSCBS]。
+-   將 LSCBERT 實驗 Step5. 留下的模型中所有檔案放入 [~/STBERT/TFIDF]。
+-   此為範例模型
+-   將這兩個模型放在 ~/LSCBS/TFIDF/ 底下，自行選擇
+1. data_tfidf是全人工標記四千筆來做比對。
+> https://drive.google.com/file/d/1LXE5C2LVHbdsFxA_L_wYVILStQEJOxO4/view?usp=sharing
+
+2. data_tfidf2是選取十萬筆判決書來做比對。
+> https://drive.google.com/file/d/1N1o-dRrBP58folqqAzX9POe_AWyqDSsJ/view?usp=sharing
+> 
 -   執行 STBERT_Srv.py
 #### 2. 架網站
 -   將 ~/WebSite_LSCBS 所有檔案丟進你的網站即可。內容均為 LSCBS 實驗的程式調整。
