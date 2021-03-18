@@ -74,4 +74,6 @@ scipy 1.3.1
 ![image](https://raw.githubusercontent.com/NCHU-NLU-Lab/LSCBS/main/ReadMe3.jpg)
 -   執行 STBERT_Srv.py
 #### 2. 架網站
+-   前端環境 js jquery(功能面)+bootstrap(網頁介面) 
+-   後端環境 PHP 5.2.0 
 -   將 ~/WebSite_LSCBS 所有檔案丟進你的網站即可。內容均為 LSCBS 實驗的程式調整。
