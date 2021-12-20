@@ -28,7 +28,8 @@ scipy 1.3.1
 #### 4. LSCBERT
 ##### 法律判決書情境擷取
 -   詳細程式碼與資料集資訊，請至LSCBERT的github
-> http://後補
+-   NCHU-LJSD 資料集
+> https://drive.google.com/drive/u/2/folders/12hKOa9jJZAQd1-qXqPS1c3YoSAVvKqhc
 
 #### 5. 將效果較好的模型儲存起來。
 
