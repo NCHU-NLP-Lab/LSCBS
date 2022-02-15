@@ -2,6 +2,7 @@ import socket
 import numpy as np
 import pandas as pd
 import jieba.posseg as pseg
+import torch
 from sentence_transformers import SentenceTransformer
 from sentence_transformers import util
 import time
@@ -113,7 +114,8 @@ class model(object):
 
         #列印結果
 
-        self.embedder = SentenceTransformer(berttype)
+        device = 'cuda' if torch.cuda.is_available() else 'cpu'
+        self.embedder = SentenceTransformer(berttype, device=device)
         # embedder=SentenceTransformer('model_bert_4000X')
 
         self.corpus_embeddings = self.embedder.encode(self.corpus, convert_to_tensor=True)
@@ -273,7 +275,7 @@ while True:
 
     except Exception as e:
         print(e)
-        s = 'Fail'
+        s = b'Fail'
         client.send(s)
 
 
