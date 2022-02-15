@@ -5,8 +5,8 @@ import socket
 import json
 import traceback
 
-bind_ip = "127.0.0.1"
-bind_port = 1026
+bind_ip = "0.0.0.0"
+bind_port = 1025
 
 server = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 

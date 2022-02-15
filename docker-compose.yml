@@ -1,0 +1,21 @@
+# docker-compose up --detach --build
+version: "3.8"
+
+services:
+  frontend:
+    build: WebSite_LSCBS
+    container_name: lscbs-frontend
+    image: nchunlplab/lscbs-frontend
+    environment: 
+      - BACKEND_SERVER_ADDR=lscbs-backend
+    ports:
+      - 21099:80
+    restart: always
+
+  backend:
+    build: STBERT
+    container_name: lscbs-backend
+    image: nchunlplab/lscbs-backend
+    restart: always
+    volumes:
+      - ./TFIDF:/app/data

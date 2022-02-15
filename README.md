@@ -11,6 +11,25 @@ sentence_transformers 0.3.6
 scipy 1.3.1
 ```
 
+## Deployment
+
+### Download and Extract the data
+
+```bash
+wget https://www.dropbox.com/s/8siytnrli5ey47i/TFIDF.tgz
+tar zxf TFIDF.tgz
+rm TFIDF.tgz
+```
+
+### Build & Start the service
+
+```bash
+docker-compose up --detach --build
+```
+
+> For the backend, it may take **several hours** to start the service.
+
+
 ## LSCBS完整流程 (包含LSCBERT)
 
 ### LSCBERT 實驗
@@ -69,10 +88,10 @@ scipy 1.3.1
 -   data_tfidf2是選取十萬筆判決書來做比對。
 > https://drive.google.com/file/d/1N1o-dRrBP58folqqAzX9POe_AWyqDSsJ/view?usp=sharing
 
-![image](https://raw.githubusercontent.com/NCHU-NLU-Lab/LSCBS/main/ReadMe2.jpg)
+![image](https://raw.githubusercontent.com/NCHU-NLP-Lab/LSCBS/main/ReadMe2.jpg)
 
 -   在STBERT_Srv.py 行49~61 可以自行調整參數，以及相對應的資料夾。如下圖，我是選擇data_tfidf2
-![image](https://raw.githubusercontent.com/NCHU-NLU-Lab/LSCBS/main/ReadMe3.jpg)
+![image](https://raw.githubusercontent.com/NCHU-NLP-Lab/LSCBS/main/ReadMe3.jpg)
 -   執行 STBERT_Srv.py
 #### 2. 架網站
 -   前端環境 js jquery(功能面)+bootstrap(網頁介面) 

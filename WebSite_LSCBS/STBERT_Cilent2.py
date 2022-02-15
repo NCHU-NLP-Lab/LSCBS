@@ -1,6 +1,7 @@
 import socket
 import json
 import sys
+import os
 
 class TranData(object):
     def __init__(self):
@@ -19,7 +20,7 @@ class AdvancedJSONEncoder(json.JSONEncoder):
             return list(obj)
         return json.JSONEncoder.default(self, obj)
 
-HOST = '127.0.0.1'
+HOST = os.environ.get("BACKEND_SERVER_ADDR", "127.0.0.1")
 PORT = 1025
 
 

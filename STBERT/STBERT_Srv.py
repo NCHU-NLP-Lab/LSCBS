@@ -60,11 +60,11 @@ class model(object):
         tmpSpecial = ''
         max = 20
         self.top_k = 5
-        self.dt_idf = pd.read_csv("..//TFIDF//" + filedir +"//Result_TFIDF_" + filenum +".csv", encoding='utf8')
+        self.dt_idf = pd.read_csv(".//data//" + filedir +"//Result_TFIDF_" + filenum +".csv", encoding='utf8')
         self.dt_idf = self.dt_idf[self.dt_idf["P"] > p_upper].drop(columns=['詞性']).set_index('詞').T.to_dict('list')
 
         #df1=pd.read_csv("..//TFIDF//" + filedir +"/result_Sbert_" + filenum +"_TFIDF_" + p_upperT +"X.csv")
-        df1=pd.read_csv("..//TFIDF//" + filedir +"/result_100000_4XF.csv")
+        df1=pd.read_csv(".//data//" + filedir +"/result_100000_4XF.csv")
         df1 = df1.dropna()
         df1['reason'] = df1['reason'].str.replace('等','')
         df1['reason'] = df1['reason'].str.replace('罪','')
@@ -226,7 +226,7 @@ class model(object):
 
         return SimilarList
 
-bind_ip = "127.0.0.1"
+bind_ip = "0.0.0.0"
 bind_port = 1025
 
 server = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
