@@ -10,7 +10,7 @@
 	#$output = shell_exec($command);
 	#$output = shell_exec($python);
 	#$output = exec($python);
-	$output = passthru("py STBERT_Cilent2.py $params");
+	$output = passthru("python STBERT_Cilent2.py $params");
 	#$output = shell_exec($path."\"".$params."\"");
 	#$output = exec($path."\"".$params."\"");
 	echo $output;
